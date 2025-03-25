@@ -1,8 +1,32 @@
 # Ignora todo
 *
 
-# Excepto el propio archivo .gitignore
+# Excepto el propio .gitignore
 !.gitignore
 
-# Excepto la carpeta src (y todo su contenido)
-!src/
+# Permite la carpeta camera_ws y camera_w2
+!camera_ws/
+!camera_ws2/
+
+# Permite la subcarpeta src
+!camera_ws/src/
+!camera_ws2/src/
+
+# Permite la subcarpeta chess_angle
+!camera_ws/src/chess_angle/
+!camera_ws2/src/chess_angle/
+
+# Permite la subcarpeta chess_angle/chess_angle y todo su contenido
+!camera_ws/src/chess_angle/chess_angle/
+!camera_ws/src/chess_angle/chess_angle/**
+
+!camera_ws2/src/chess_angle/chess_angle/
+!camera_ws2/src/chess_angle/chess_angle/**
+
+#GitKeep
+!camera_ws/.gitkeep
+!camera_ws2/.gitkeep
+!camera_ws/src/.gitkeep
+!camera_ws2/src/.gitkeep
+!camera_ws/src/chess_angle/.gitkeep
+!camera_ws2/src/chess_angle/.gitkeep
