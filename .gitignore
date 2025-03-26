@@ -21,7 +21,10 @@
 !camera_ws/src/chess_angle/chess_angle/**
 
 !camera_ws2/src/chess_angle/chess_angle/
+!camera_ws2/src/chess_angle/launch/
 !camera_ws2/src/chess_angle/chess_angle/**
+
+!camera_ws2/src/chess_angle/launch/launch.py
 
 #GitKeep
 !camera_ws/.gitkeep
@@ -30,3 +33,4 @@
 !camera_ws2/src/.gitkeep
 !camera_ws/src/chess_angle/.gitkeep
 !camera_ws2/src/chess_angle/.gitkeep
+!camera_ws2/src/chess_angle/launch/.gitkeep
