@@ -10,19 +10,20 @@ class CameraFramePublisher(Node):
     def __init__(self):
         super().__init__('camera_frame_publisher') 
         self.publisher_ = self.create_publisher(Image, 'camera_frame', 10)
-        self.timer = self.create_timer(0.1, self.publish_frame)  # 10 Hz
+        self.timer = self.create_timer(0.0333, self.publish_frame)  # 30 Hz
         self.bridge = CvBridge()
 
-        self.serial_number = "046d_Logitech_BRIO_F8C07419"
+        self.serial_number = "046d_Logitech_BRIO_745683D1"
         self.cap = self.get_camera_by_serial(self.serial_number)
         #self.cap = cv2.VideoCapture(0)
 
         if not self.cap:
             self.get_logger().error("Error al abrir la cámara.")
             exit()
-
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+        
+        # Establecer la resolución manualmente después de abrir la cámara
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 848)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     def get_camera_by_serial(self, serial):
         video_devices = [f'/dev/video{i}' for i in range(0, 8)]
