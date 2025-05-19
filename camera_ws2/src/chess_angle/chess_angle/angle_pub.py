@@ -19,8 +19,8 @@ class AnglePublisher(Node):
         self.cap = self.get_camera_by_serial(self.serial_number)
         
         # Establecer la resolución manualmente después de abrir la cámara
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)  # Ancho
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)  # Alto
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 848)  # Ancho
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Alto
         
         if not self.cap:
             self.get_logger().error("Error al abrir la cámara.")

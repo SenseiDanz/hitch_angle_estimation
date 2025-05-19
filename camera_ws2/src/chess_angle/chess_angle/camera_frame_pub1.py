@@ -6,17 +6,21 @@ from cv_bridge import CvBridge
 import cv2
 import os
 
-class CameraFramePublisher(Node):
+class CameraFramePublisher1(Node):
     def __init__(self):
-        super().__init__('camera_frame_publisher') 
-        self.publisher_ = self.create_publisher(Image, 'camera_frame', 10)
+        super().__init__('camera_frame_publisher1') 
+        self.publisher_ = self.create_publisher(Image, 'camera_frame1', 10)
         self.timer = self.create_timer(0.0333, self.publish_frame)  # 30 Hz
         self.bridge = CvBridge()
 
-        self.cap = cv2.VideoCapture(0)
+        # Número de serie de la cámara izquierda
+        self.serial_number = "046d_Logitech_BRIO_745683D1"
+
+        # Intenta encontrar la cámara por número de serie
+        self.cap = self.get_camera_by_serial(self.serial_number)
 
         if not self.cap.isOpened():
-            self.get_logger().error("Error al abrir la cámara.")
+            self.get_logger().error("Error al abrir la cámara 1.")
             exit()
         
         # Establecer la resolución manualmente después de abrir la cámara
@@ -45,7 +49,7 @@ class CameraFramePublisher(Node):
             if f'E: ID_SERIAL={serial}' in udev_info:
                 cap = cv2.VideoCapture(dev)
                 if cap.isOpened():
-                    self.get_logger().info(f"Cámara encontrada: {dev}")
+                    self.get_logger().info(f"Cámara 1 encontrada: {dev}")
                     return cap
         return None
 
@@ -103,19 +107,19 @@ class CameraFramePublisher(Node):
 
         msg = self.bridge.cv2_to_imgmsg(gray, encoding="mono8")
         msg.header.stamp = self.get_clock().now().to_msg()
-        msg.header.frame_id = "camera_frame"
+        msg.header.frame_id = "camera_frame1"
         self.publisher_.publish(msg)
-        self.get_logger().info("Frame publicado")
+        self.get_logger().info("Frame de la camara 1 publicado")
 
 
 def main(args=None):
     rclpy.init(args=args)
-    frame_publisher = CameraFramePublisher()
+    frame_publisher1 = CameraFramePublisher1()
     try:
-        rclpy.spin(frame_publisher)
+        rclpy.spin(frame_publisher1)
     except KeyboardInterrupt:
         pass
-    frame_publisher.destroy_node()
+    frame_publisher1.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':

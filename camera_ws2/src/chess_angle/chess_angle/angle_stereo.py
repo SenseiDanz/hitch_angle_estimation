@@ -8,26 +8,34 @@ import numpy as np
 import time
 import os
 
-class AnglePublisher(Node):
+class StereoAnglePublisher(Node):
     def __init__(self):
-        super().__init__('angle_publisher')
+        super().__init__('stereo_angle_publisher')
         self.publisher_ = self.create_publisher(Float32, 'angle_topic', 10)
-        self.subscription = self.create_subscription(Image, 'camera_frame', self.image_callback, 10)
+        self.subscription = self.create_subscription(Image, 'camera_frame1', self.image_callback1, 10)
+        self.subscription2 = self.create_subscription(Image, 'camera_frame2', self.image_callback2, 10)
         self.bridge = CvBridge()
-        
-        self.criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
-        self.angle = 0.0  # Ángulo estimado actual
-        self.calibrated = False
+        self.angle = 0.0
+        self.frame1 = None
+        self.frame2 = None
 
-        self.width = 960
-        self.height = 540
-        self.dim = (self.width, self.height)
-
-        # Calibrar cámara o cargar parámetros previos
         self.calibration_choice()
 
+    def get_camera_by_serial(self, serial):
+        video_devices = [f'/dev/video{i}' for i in range(0, 8)]
+        for dev in video_devices:
+            cmd = f'udevadm info --query=all --name={dev}'
+            udev_info = os.popen(cmd).read()
+            if f'E: ID_SERIAL={serial}' in udev_info:
+                cap = cv2.VideoCapture(dev)
+                if cap.isOpened():
+                    self.get_logger().info(f"Cámara 1 encontrada: {dev}")
+                    return cap
+        return None
+
     def calibration_choice(self):
+        # Selección de patrón
         print("\nSelecciona el patrón de ajedrez:")
         print("1. Patrón (5, 7) con square_size = 2.5")
         print("2. Patrón (8, 11) con square_size = 6.0")
@@ -36,34 +44,38 @@ class AnglePublisher(Node):
         if opcion == '1':
             self.CHECKERBOARD = (5, 7)
             self.square_size = 2.5
-            self.calibration_file = "calibration_5x7.yml"
         elif opcion == '2':
             self.CHECKERBOARD = (8, 11)
             self.square_size = 6.0
-            self.calibration_file = "calibration_8x11.yml"
         else:
             print("Opción inválida. Se usará el patrón por defecto (8, 11).")
             self.CHECKERBOARD = (8, 11)
             self.square_size = 6.0
-            self.calibration_file = "calibration_8x11.yml"
 
-        # Regenerar objp según el patrón elegido
-        self.objp = np.zeros((1, self.CHECKERBOARD[0] * self.CHECKERBOARD[1], 3), np.float32)
-        self.objp[0, :, :2] = np.mgrid[0:self.CHECKERBOARD[0],
-                                    0:self.CHECKERBOARD[1]].T.reshape(-1, 2) * self.square_size
+        self.objp = np.zeros((np.prod(self.CHECKERBOARD), 3), np.float32)
+        self.objp[:, :2] = np.indices(self.CHECKERBOARD).T.reshape(-1, 2) * self.square_size
 
+        # Selección de calibración
         user_input = input("¿Deseas calibrar la cámara? (s/n): ").strip().lower()
         if user_input == 's':
-            self.get_logger().info(f"Iniciando calibración con patrón {self.CHECKERBOARD} y square_size = {self.square_size}")
-            self.calibrate_camera()
+            # Número de serie
+            self.serial_numberL = "046d_Logitech_BRIO_745683D1"
+            self.serial_numberR =  "046d_Logitech_BRIO_F8C07419"
+        # Intenta encontrar la cámara por número de serie
+            self.capL = self.get_camera_by_serial(self.serial_numberL)
+            self.capR = self.get_camera_by_serial(self.serial_numberR)
+            self.get_logger().info(f"Iniciando calibración de la cámara 1 con patrón {self.CHECKERBOARD} y square_size = {self.square_size}")
+            self.calibrate_camera(capL,1)
+            self.get_logger().info(f"Iniciando calibración de la cámara 2 ")
+            self.calibrate_camera(capR,2)
         else:
-            self.load_calibration_params()
+            self.load_stereo_calibration()
+        
 
-    def calibrate_camera(self):
+    def calibrate_camera(self,cap,cam_num):
         self.get_logger().info("Capturando 60 imágenes para calibración...")
         objpoints = []
         imgpoints = []
-        cap = cv2.VideoCapture(0)
 
         # Establecer la resolución manualmente después de abrir la cámara
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 848)
@@ -168,9 +180,9 @@ class AnglePublisher(Node):
         self.tvecs = tvecs
         self.calibrated = True
         self.get_logger().info("Calibración completada.")
-        self.save_calibration_params()
+        self.save_calibration_params(cam_num)
 
-    def save_calibration_params(self):
+    def save_calibration_params(self,num):
         fs = cv2.FileStorage(self.calibration_file, cv2.FILE_STORAGE_WRITE)
         fs.write("camera_matrix", self.mtx)
         fs.write("dist_coeffs", self.dist)
@@ -179,97 +191,69 @@ class AnglePublisher(Node):
         fs.release()
         self.get_logger().info(f"Parámetros guardados en {self.calibration_file}")
 
-    def load_calibration_params(self):
-        fs = cv2.FileStorage(self.calibration_file, cv2.FILE_STORAGE_READ)
-        if not fs.isOpened():
-            self.get_logger().error(f"No se pudo abrir el archivo {self.calibration_file}")
+    def load_stereo_calibration(self):
+        fs = cv2.FileStorage('stereo_calibration.yml', cv2.FILE_STORAGE_READ)
+        self.K1 = fs.getNode('K1').mat()
+        self.D1 = fs.getNode('D1').mat()
+        self.K2 = fs.getNode('K2').mat()
+        self.D2 = fs.getNode('D2').mat()
+        self.P1 = fs.getNode('P1').mat()
+        self.P2 = fs.getNode('P2').mat()
+        fs.release()
+
+    def image_callback1(self, msg):
+        self.frame1 = self.bridge.imgmsg_to_cv2(msg, desired_encoding='mono8')
+        self.try_process()
+
+    def image_callback2(self, msg):
+        self.frame2 = self.bridge.imgmsg_to_cv2(msg, desired_encoding='mono8')
+        self.try_process()
+
+    def try_process(self):
+        if self.frame1 is None or self.frame2 is None:
             return
 
-        self.mtx = fs.getNode("camera_matrix").mat()
-        self.dist = fs.getNode("dist_coeffs").mat()
-        fs.release()
-        self.calibrated = True
-        self.get_logger().info(f"Parámetros de calibración cargados desde {self.calibration_file}")
+        gray1 = cv2.cvtColor(self.frame1, cv2.COLOR_BGR2GRAY)
+        gray2 = cv2.cvtColor(self.frame2, cv2.COLOR_BGR2GRAY)
 
-    def image_callback(self, msg):
-        start_time = time.time()
+        found1, corners1 = cv2.findChessboardCorners(gray1, self.CHECKERBOARD, None)
+        found2, corners2 = cv2.findChessboardCorners(gray2, self.CHECKERBOARD, None)
 
-        gray = self.bridge.imgmsg_to_cv2(msg, desired_encoding='mono8') # frame convertido ya a escala de grises
-        angle = self.calculate_angle(gray)
+        if found1 and found2:
+            term = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.01)
+            corners1 = cv2.cornerSubPix(gray1, corners1, (11, 11), (-1, -1), term)
+            corners2 = cv2.cornerSubPix(gray2, corners2, (11, 11), (-1, -1), term)
 
-        # Luego resize solo para mostrar
-        #frame_resized = cv2.resize(frame, self.dim, interpolation=cv2.INTER_AREA)
+            undist1 = cv2.undistortPoints(corners1, self.K1, self.D1, P=self.P1)
+            undist2 = cv2.undistortPoints(corners2, self.K2, self.D2, P=self.P2)
 
-        angle_msg = Float32()
-        angle_msg.data = angle
-        self.publisher_.publish(angle_msg)
-        self.get_logger().info(f"Ángulo publicado: {angle:.2f} grados")
+            points_4d = cv2.triangulatePoints(self.P1, self.P2, undist1, undist2)
+            points_3d = cv2.convertPointsFromHomogeneous(points_4d.T)
+            points_3d = points_3d.reshape(-1, 3)
 
-        #cv2.putText(frame_resized, f'Angulo: {angle:.2f} grados', (10, 30),
-                    #cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        #cv2.imshow("Cámara - Ángulo estimado", frame_resized)
+            _, _, vt = np.linalg.svd(points_3d - np.mean(points_3d, axis=0))
+            normal = vt[-1]
 
-        end_time = time.time()
-        elapsed = end_time - start_time
-        self.get_logger().info(f"Tiempo de iteración: {elapsed:.4f} segundos")
-
-        #if cv2.waitKey(1) & 0xFF == ord('q'):
-            #cv2.destroyAllWindows()
-
-    def calculate_angle(self, frame):
-        if not self.calibrated:
-            return self.angle
-
-        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        ret, corners = cv2.findChessboardCorners(
-            frame,
-            self.CHECKERBOARD,
-            cv2.CALIB_CB_ADAPTIVE_THRESH + cv2.CALIB_CB_FAST_CHECK + cv2.CALIB_CB_NORMALIZE_IMAGE
-        )
-
-        if ret:
-            success, rvec, tvec = cv2.solvePnP(
-                self.objp, corners, self.mtx, self.dist, flags=cv2.SOLVEPNP_ITERATIVE
-            )
-            rvec, tvec = cv2.solvePnPRefineLM(
-                self.objp, corners, self.mtx, self.dist, rvec, tvec
-            )
-
-            R, _ = cv2.Rodrigues(rvec)
-
-            # Aquí extraemos el yaw
-            yaw = np.arctan2(R[0, 2], R[2, 2])  # eje y de la cámara
-
-            angle_deg = np.degrees(yaw)
+            vehicle_forward = np.array([0, 0, 1])
+            angle_rad = np.arctan2(np.cross(vehicle_forward, normal)[1], np.dot(vehicle_forward, normal))
+            angle_deg = np.degrees(angle_rad)
             if angle_deg < 0:
-                angle_deg = 360 + angle_deg  # pasa de (-180, 0) a (180, 360)
-            
+                angle_deg += 360
+
             self.angle = angle_deg
-            # Suavizado circular
-            #alpha = 0.9
-            #prev_rad = np.radians(self.angle)
-            #new_rad = np.radians(angle_deg)
-
-            #x = alpha * np.cos(prev_rad) + (1 - alpha) * np.cos(new_rad)
-            #y = alpha * np.sin(prev_rad) + (1 - alpha) * np.sin(new_rad)
-
-            #smoothed_angle = np.degrees(np.arctan2(y, x))
-            #if smoothed_angle < 0:
-                #smoothed_angle += 360
-
-            #self.angle = smoothed_angle
-
+            angle_msg = Float32()
+            angle_msg.data = angle_deg
+            self.publisher_.publish(angle_msg)
+            self.get_logger().info(f"Ángulo publicado: {angle_deg:.2f} grados")
         else:
-            self.get_logger().warn("No se detectó el patrón de ajedrez. Manteniendo ángulo anterior.")
-
-        return self.angle
+            self.get_logger().warn("No se detectó el patrón en ambas cámaras.")
 
 
 def main(args=None):
     rclpy.init(args=args)
-    angle_publisher = AnglePublisher()
-    rclpy.spin(angle_publisher)
-    angle_publisher.destroy_node()
+    node = StereoAnglePublisher()
+    rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
     cv2.destroyAllWindows()
 
