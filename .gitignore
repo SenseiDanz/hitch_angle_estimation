@@ -1,36 +1,10 @@
-# Ignora todo
-*
+#GitIgnore
+*camera_ws
+*camera_ws2/angulos_timestamps.csv
+*camera_ws2/senoidal_amplio.csv
+*camera_ws2/calibration_params.yml
+*camera_ws2/log/**
+*camera_ws2/angulos_timestamps.csv
+*camera_ws2/rosbag2_2025_05_08-10_57_28
 
-# Excepto el propio .gitignore
-!.gitignore
-
-# Permite la carpeta camera_ws y camera_w2
-!camera_ws/
-!camera_ws2/
-
-# Permite la subcarpeta src
-!camera_ws/src/
-!camera_ws2/src/
-
-# Permite la subcarpeta chess_angle
-!camera_ws/src/chess_angle/
-!camera_ws2/src/chess_angle/
-
-# Permite la subcarpeta chess_angle/chess_angle y todo su contenido
-!camera_ws/src/chess_angle/chess_angle/
-!camera_ws/src/chess_angle/chess_angle/**
-
-!camera_ws2/src/chess_angle/chess_angle/
-!camera_ws2/src/chess_angle/launch/
-!camera_ws2/src/chess_angle/chess_angle/**
-
-!camera_ws2/src/chess_angle/launch/launch.py
-
-#GitKeep
-!camera_ws/.gitkeep
-!camera_ws2/.gitkeep
-!camera_ws/src/.gitkeep
-!camera_ws2/src/.gitkeep
-!camera_ws/src/chess_angle/.gitkeep
-!camera_ws2/src/chess_angle/.gitkeep
-!camera_ws2/src/chess_angle/launch/.gitkeep
+!*camera_ws2/log/.gitkeep
