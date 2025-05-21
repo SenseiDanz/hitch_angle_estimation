@@ -5,6 +5,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
 import os
+import time
 
 class CameraFramePublisher(Node):
     def __init__(self):
@@ -89,14 +90,18 @@ class CameraFramePublisher(Node):
                     self.get_logger().warn(f"Patrón no detectado en -6.0. Probando bajar exposición a {new_exposure:.1f}")
 
                 elif exposure == self.MIN_EXPOSURE:
-                    new_exposure = exposure + 1.0
-                    self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
-                    self.get_logger().warn(f"En límite inferior (-11.0). Subiendo exposición a {new_exposure:.1f} para intentar recuperar patrón.")
+                    #new_exposure = exposure + 1.0
+                    #self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
+                    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+                    gray = clahe.apply(gray)
+                    self.get_logger().warn(f"En límite inferior {exposure:.1f} . Aplicando CLAHE")
 
                 elif exposure == self.MAX_EXPOSURE:
-                    new_exposure = exposure - 1.0
-                    self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
-                    self.get_logger().warn(f"En límite superior (-2.0). Bajando exposición a {new_exposure:.1f} para intentar recuperar patrón.")
+                    #new_exposure = exposure - 1.0
+                    #self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
+                    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+                    gray = clahe.apply(gray)
+                    self.get_logger().warn(f"En límite superior {exposure:.1f} . Aplicando CLAHE.")
 
         else:
             self.pattern_not_found_count = 0  # Reinicia si se encuentra el patrón
