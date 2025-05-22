@@ -144,15 +144,18 @@ class AnglePublisher(Node):
                         self.get_logger().warn(f"Patrón no detectado en -6.0. Probando bajar exposición a {new_exposure:.1f}")
 
                     elif exposure == MIN_EXPOSURE:
-                        new_exposure = exposure + 1.0
-                        self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
-                        self.get_logger().warn(f"En límite inferior (-11.0). Subiendo exposición a {new_exposure:.1f} para intentar recuperar patrón.")
+                        #new_exposure = exposure + 1.0
+                        #self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
+                        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+                        gray = clahe.apply(gray)
+                        self.get_logger().warn(f"En límite inferior {exposure:.1f} . Aplicando CLAHE")
 
                     elif exposure == MAX_EXPOSURE:
-                        new_exposure = exposure - 1.0
-                        self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
-                        self.get_logger().warn(f"En límite superior (-2.0). Bajando exposición a {new_exposure:.1f} para intentar recuperar patrón.")
-                
+                        #new_exposure = exposure - 1.0
+                        #self.cap.set(cv2.CAP_PROP_EXPOSURE, new_exposure)
+                        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+                        gray = clahe.apply(gray)
+                        self.get_logger().warn(f"En límite superior {exposure:.1f} . Aplicando CLAHE.")
             #frame_resized = cv2.resize(frame, self.dim, interpolation=cv2.INTER_AREA)
             #cv2.imshow("Calibración - Cámara", frame_resized)
             #if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -240,25 +243,8 @@ class AnglePublisher(Node):
             # Aquí extraemos el yaw
             yaw = np.arctan2(R[0, 2], R[2, 2])  # eje y de la cámara
 
-            angle_deg = np.degrees(yaw)
-            if angle_deg < 0:
-                angle_deg = 360 + angle_deg  # pasa de (-180, 0) a (180, 360)
-            
+            angle_deg = np.degrees(yaw)           
             self.angle = angle_deg
-            # Suavizado circular
-            #alpha = 0.9
-            #prev_rad = np.radians(self.angle)
-            #new_rad = np.radians(angle_deg)
-
-            #x = alpha * np.cos(prev_rad) + (1 - alpha) * np.cos(new_rad)
-            #y = alpha * np.sin(prev_rad) + (1 - alpha) * np.sin(new_rad)
-
-            #smoothed_angle = np.degrees(np.arctan2(y, x))
-            #if smoothed_angle < 0:
-                #smoothed_angle += 360
-
-            #self.angle = smoothed_angle
-
         else:
             self.get_logger().warn("No se detectó el patrón de ajedrez. Manteniendo ángulo anterior.")
 

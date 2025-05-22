@@ -2,6 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import Bool
 from cv_bridge import CvBridge
 import cv2
 import os
@@ -11,6 +12,7 @@ class CameraFramePublisher(Node):
     def __init__(self):
         super().__init__('camera_frame_publisher') 
         self.publisher_ = self.create_publisher(Image, 'camera_frame', 10)
+        self.status_pattern_pub = self.create_publisher(Bool, 'pattern_found', 10)
         self.timer = self.create_timer(0.0333, self.publish_frame)  # 30 Hz
         self.bridge = CvBridge()
 
@@ -58,6 +60,12 @@ class CameraFramePublisher(Node):
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         pattern_found, _ = cv2.findChessboardCorners(gray, self.CHECKERBOARD, None)
+        
+        # Publicar estado del patrón
+        pattern_msg = Bool()
+        pattern_msg.data = bool(pattern_found)
+        self.pattern_status_pub.publish(pattern_msg)
+        self.get_logger().info(f"pattern_found = {pattern_found}")
 
         if not pattern_found:
             self.pattern_not_found_count += 1
