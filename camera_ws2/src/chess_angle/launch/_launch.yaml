@@ -1,6 +1,0 @@
-launch:
-
-- node:
-    pkg: "chess_angle"
-    exec: "talker"
-    name: "talker"

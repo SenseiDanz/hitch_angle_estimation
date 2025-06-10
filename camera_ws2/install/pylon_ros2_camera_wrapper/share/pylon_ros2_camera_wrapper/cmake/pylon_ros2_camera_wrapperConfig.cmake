@@ -1,0 +1,1 @@
+/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_wrapper/ament_cmake_core/pylon_ros2_camera_wrapperConfig.cmake

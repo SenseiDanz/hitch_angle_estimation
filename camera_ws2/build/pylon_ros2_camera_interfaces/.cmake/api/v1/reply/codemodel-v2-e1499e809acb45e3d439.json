@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-f33e7c685f388292a30a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "pylon_ros2_camera_interfaces__py",
+					"jsonFile" : "directory-pylon_ros2_camera_interfaces__py-97205868aaff80671857.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_interfaces/pylon_ros2_camera_interfaces__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "pylon_ros2_camera_interfaces",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_pylon_ros2_camera_interfaces_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_pylon_ros2_camera_interfaces_egg-036b4ce25eece28bc011.json",
+					"name" : "ament_cmake_python_build_pylon_ros2_camera_interfaces_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_symlink_pylon_ros2_camera_interfaces::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_symlink_pylon_ros2_camera_interfaces-a1e102db3d7bd39f7df9.json",
+					"name" : "ament_cmake_python_symlink_pylon_ros2_camera_interfaces",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces-ca8f6742d03119868668.json",
+					"name" : "pylon_ros2_camera_interfaces",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__cpp-ecbfa991733b3000cf44.json",
+					"name" : "pylon_ros2_camera_interfaces__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "pylon_ros2_camera_interfaces__py::@87abacbd96c12777c47c",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__py-61d0d648a1f4927e8334.json",
+					"name" : "pylon_ros2_camera_interfaces__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_generator_c-193dd20d1e520480ff85.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_generator_py-6c457dab92a502e96395.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_c-728eb358ef08274c3e0e.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_c__pyext-14bb0e8b56584ce5b312.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_cpp-36173b976e99b69ebdab.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c-5ce106f4ceb0251d0f08.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c__pyext-d9f04f54bedefc4339df.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_cpp-ade2da985be1918d3bb9.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c-07d517d4fe46c63d3679.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c__pyext-8adc135ee3bc3168494c.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_cpp-c3a24a51ad65004b85f0.json",
+					"name" : "pylon_ros2_camera_interfaces__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_interfaces_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_interfaces_uninstall-f13405ae1ffedcd3ce52.json",
+					"name" : "pylon_ros2_camera_interfaces_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-9bb865f7f614fc09fcdf.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_interfaces",
+		"source" : "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

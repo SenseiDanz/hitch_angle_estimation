@@ -1,0 +1,27 @@
+{
+  "package_name": "pylon_ros2_camera_interfaces",
+  "non_idl_tuples": [
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:msg/CurrentParams.msg",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:msg/ComponentStatus.msg",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/GetIntegerValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/GetFloatValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/GetStringValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/GetPtpStatus.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetBinning.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetBrightness.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetExposure.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetGain.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetGamma.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetROI.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetSleeping.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetWhiteBalance.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetIntegerValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetFloatValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetStringValue.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/SetActionTriggerConfiguration.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/IssueActionCommand.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:srv/IssueScheduledActionCommand.srv",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:action/GrabImages.action",
+    "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_interfaces:action/GrabBlazeData.action"
+  ]
+}

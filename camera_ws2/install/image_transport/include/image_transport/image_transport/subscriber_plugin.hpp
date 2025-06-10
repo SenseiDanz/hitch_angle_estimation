@@ -1,0 +1,1 @@
+/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/image_common/image_common/image_transport/include/image_transport/subscriber_plugin.hpp

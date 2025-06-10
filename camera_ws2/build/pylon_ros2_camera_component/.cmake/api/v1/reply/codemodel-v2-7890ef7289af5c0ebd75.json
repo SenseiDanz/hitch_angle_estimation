@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-3042642dc7b58d87e218.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pylon_ros2_camera_component",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ip_auto_config::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ip_auto_config-Release-6009e515f6fca03b59df.json",
+					"name" : "ip_auto_config",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_component::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_component-Release-b117226ad7eff2c80661.json",
+					"name" : "pylon_ros2_camera_component",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pylon_ros2_camera_component_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pylon_ros2_camera_component_uninstall-Release-db063cd4e2b7ce83b6e1.json",
+					"name" : "pylon_ros2_camera_component_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "set_device_user_id::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-set_device_user_id-Release-2d91e47eb5f4c436a3e6.json",
+					"name" : "set_device_user_id",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Release-1335352b91c01bc940ff.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_component",
+		"source" : "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/pylon_ros2_camera_component"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

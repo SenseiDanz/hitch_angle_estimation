@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_wrapper/test_grab_image_action_client" "TARGETS" "test_grab_image_action_client" "DESTINATION" "lib/pylon_ros2_camera_wrapper")

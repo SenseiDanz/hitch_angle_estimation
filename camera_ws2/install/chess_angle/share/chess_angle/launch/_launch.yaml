@@ -1,6 +1,1 @@
-launch:
-
-- node:
-    pkg: "chess_angle"
-    exec: "talker"
-    name: "talker"
+/root/hitch_angle/camera_ws2/build/chess_angle/launch/_launch.yaml

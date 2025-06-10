@@ -1,0 +1,1 @@
+/root/hitch_angle/camera_ws2/build/pylon_ros2_camera_interfaces/rosidl_typesupport_fastrtps_c/pylon_ros2_camera_interfaces/srv/detail/set_action_trigger_configuration__rosidl_typesupport_fastrtps_c.h

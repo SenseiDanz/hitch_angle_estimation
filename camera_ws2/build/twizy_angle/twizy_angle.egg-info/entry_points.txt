@@ -1,0 +1,7 @@
+[console_scripts]
+angle_pub = twizy_angle.angle_pub:main
+angle_pub2 = twizy_angle.angle_pub2:main
+angle_sub = twizy_angle.angle_sub:main
+camera_frame_pub = twizy_angle.camera_frame_pub:main
+real_pub = twizy_angle.real_pub:main
+

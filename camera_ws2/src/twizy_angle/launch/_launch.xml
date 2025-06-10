@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="twizy_angle" exec="talker" name="talker"/>
+</launch>

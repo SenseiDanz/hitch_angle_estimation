@@ -6,5 +6,14 @@
 *camera_ws2/log/**
 *camera_ws2/angulos_timestamps.csv
 *camera_ws2/rosbag2_2025_05_08-10_57_28
+*camera_ws2/src/twizy_angle/twizy_angle/camera_frame_pub1.py
+*camera_ws2/src/twizy_angle/twizy_angle/camera_frame_pub2.py
+*camera_ws2/src/twizy_angle/twizy_angle/angle_stereo.py
+*camera_ws2/src/twizy_angle/twizy_angle/real_pub.py
+*pylon-8.1.0_linux-x86_64_setup.tar.gz
+*pylon-supplementary-package-for-blaze-1.7.2.f00d43816_x86_64_setup.tar.gz
+*pylon_setup
+*rosbag Twizy
+*log
 
 !*camera_ws2/log/.gitkeep

@@ -1,0 +1,1 @@
+/root/hitch_angle/camera_ws2/build/camera_info_manager/ament_cmake_environment_hooks/local_setup.zsh

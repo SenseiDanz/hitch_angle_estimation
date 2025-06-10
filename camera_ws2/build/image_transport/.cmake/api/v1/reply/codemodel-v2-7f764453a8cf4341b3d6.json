@@ -1,0 +1,211 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-421f561b3cf1578beb40.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				},
+				{
+					"build" : "gtest",
+					"jsonFile" : "directory-gtest-a2408fe1a73b92c5e636.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/opt/ros/humble/src/gtest_vendor",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "image_transport",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "gtest",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "gtest::@0af4add9fe94340e763e",
+					"jsonFile" : "target-gtest-3cb660dee974867f4e7b.json",
+					"name" : "gtest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "gtest_main::@0af4add9fe94340e763e",
+					"jsonFile" : "target-gtest_main-5d206279f46d1d51dbe8.json",
+					"name" : "gtest_main",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-c5cbbdb10ac64044b0bd.json",
+					"name" : "image_transport",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-camera_common::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-camera_common-3fffe58ae909cb124856.json",
+					"name" : "image_transport-camera_common",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-message_passing::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-message_passing-aba980b605b71f2cb30f.json",
+					"name" : "image_transport-message_passing",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-publisher::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-publisher-a2aa88fbf1b38b5afd22.json",
+					"name" : "image_transport-publisher",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-remapping::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-remapping-52c8a856f3c397b0a025.json",
+					"name" : "image_transport-remapping",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-single_subscriber_publisher::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-single_subscriber_publisher-d4bad5fb6bc9e499f5de.json",
+					"name" : "image_transport-single_subscriber_publisher",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport-subscriber::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport-subscriber-d79bf99f56f428b58af7.json",
+					"name" : "image_transport-subscriber",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport_plugins::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport_plugins-c085ba1a99d8cb2d8814.json",
+					"name" : "image_transport_plugins",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_transport_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_transport_uninstall-a96257e2793599c66bce.json",
+					"name" : "image_transport_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "list_transports::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-list_transports-211ae52cca576a3179fd.json",
+					"name" : "list_transports",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "republish::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-republish-d4a47a1aa1f1aa741ee2.json",
+					"name" : "republish",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-648ed6aed19fede416af.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/hitch_angle/camera_ws2/build/image_transport",
+		"source" : "/root/hitch_angle/camera_ws2/src/pylon_ros2_camera/image_common/image_common/image_transport"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
